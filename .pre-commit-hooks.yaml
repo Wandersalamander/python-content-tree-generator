@@ -1,0 +1,6 @@
+- id: content-tree-generator
+  name: Content Tree Generator
+  entry: content-tree-generator
+  language: python
+  files: \.py$
+  pass_filenames: false

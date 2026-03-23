@@ -1,0 +1,81 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "python-content-tree-generator"
+version = "0.0.7"
+description = "Keep the content tree of your Python project up to date."
+readme = "README.md"
+license = "GPL-2.0-only"
+requires-python = ">=3.10"
+dependencies = []
+authors = [
+    { name = "Wandersalamander" },
+]
+keywords = [
+    "pre-commit",
+    "content-tree",
+    "project-structure",
+    "documentation",
+    "readme",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Software Development :: Documentation",
+    "Topic :: Software Development :: Quality Assurance",
+    "Typing :: Typed",
+]
+
+[project.urls]
+Homepage = "https://github.com/Wandersalamander/python-content-tree-generator"
+Repository = "https://github.com/Wandersalamander/python-content-tree-generator"
+Issues = "https://github.com/Wandersalamander/python-content-tree-generator/issues"
+Changelog = "https://github.com/Wandersalamander/python-content-tree-generator/blob/main/CHANGELOG.md"
+
+[project.scripts]
+content-tree-generator = "python_content_tree_generator.hook:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["python_content_tree_generator"]
+
+[tool.setuptools.package-data]
+python_content_tree_generator = ["py.typed"]
+
+[project.optional-dependencies]
+dev = ["pre-commit", "ruff", "ty"]
+test = ["pytest", "pytest-cov"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.coverage.run]
+source = ["python_content_tree_generator"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 80
+
+[tool.ty.environment]
+python-version = "3.10"
+
+[[tool.ty.overrides]]
+include = ["tests/*"]
+[tool.ty.overrides.rules]
+unresolved-import = "ignore"
+
+[tool.ruff]
+target-version = "py310"
+line-length = 78
+
+[tool.ruff.lint]
+select = ["E", "F", "W"]
+ignore = ["E501", ]
